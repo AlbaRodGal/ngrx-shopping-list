@@ -1,5 +1,4 @@
-import { ShoppingAction } from './shopping.action';
-import { ShoppingItem } from './shopping-item.model';
+import { ShoppingItem } from '../models/shopping-item.model';
 import { Action } from '@ngrx/store';
 
 export enum ShoppingActionTypes {
@@ -9,9 +8,9 @@ export enum ShoppingActionTypes {
   ADD_ITEM = '[SHOPPING] Add Item',
   ADD_ITEM_SUCCESS = '[SHOPPING] Add Item Success',
   ADD_ITEM_FAILURE = '[SHOPPING] Add Item Failure',
-  DELETE_ITEM = '[SHOPIING] Delete Item',
+  DELETE_ITEM = '[SHOPPING] Delete Item',
   DELETE_ITEM_SUCCESS = '[SHOPPING] Delete Item Success',
-  DELETE_ITEM_FAILURE = '[SHOPPING] Delete Item Failure'
+  DELETE_ITEM_FAILURE = '[SHOPPING] Delete Item Failure',
 }
 
 export class LoadShoppingAction implements Action {
@@ -19,43 +18,55 @@ export class LoadShoppingAction implements Action {
 }
 export class LoadShoppingSuccessAction implements Action {
   readonly type = ShoppingActionTypes.LOAD_SHOPPING_SUCCESS;
-  constructor(public payload: Array<ShoppingItem>){}
+
+  constructor(public payload: Array<ShoppingItem>) {}
 }
 export class LoadShoppingFailureAction implements Action {
   readonly type = ShoppingActionTypes.LOAD_SHOPPING_FAILURE;
-  constructor(public payload: Error){}
+
+  constructor(public payload: string) {}
 }
+
 export class AddItemAction implements Action {
   readonly type = ShoppingActionTypes.ADD_ITEM;
-  constructor(public payload: ShoppingItem){}
+
+  constructor(public payload: ShoppingItem) {}
 }
 export class AddItemSuccessAction implements Action {
   readonly type = ShoppingActionTypes.ADD_ITEM_SUCCESS;
-  constructor(public payload: ShoppingItem){}
+
+  constructor(public payload: ShoppingItem) {}
 }
 export class AddItemFailureAction implements Action {
   readonly type = ShoppingActionTypes.ADD_ITEM_FAILURE;
-  constructor(public payload: Error){}
-}
-export class DeleteItemAction implements Action {
-  readonly type = ShoppingActionTypes.DELETE_ITEM;
-  constructor(public payload: string){}
-}
-export class DeleteItemSuccessAction implements Action {
-  readonly type = ShoppingActionTypes.DELETE_ITEM_SUCCESS;
-  constructor(public payload: string){}
-}
-export class DeleteItemFailure implements Action {
-  readonly type = ShoppingActionTypes.DELETE_ITEM_FAILURE;
-  constructor(public payload: Error){}
+
+  constructor(public payload: Error) {}
 }
 
-export type ShoppingAction = LoadShoppingAction
-| LoadShoppingSuccessAction
-| LoadShoppingFailureAction
-| AddItemAction
-| AddItemSuccessAction
-| AddItemFailureAction
-| DeleteItemAction
-| DeleteItemSuccessAction
-| DeleteItemFailure;
+export class DeleteItemAction implements Action {
+  readonly type = ShoppingActionTypes.DELETE_ITEM;
+
+  constructor(public payload: string) {}
+}
+
+export class DeleteItemSuccessAction implements Action {
+  readonly type = ShoppingActionTypes.DELETE_ITEM_SUCCESS;
+
+  constructor(public payload: string) {}
+}
+export class DeleteItemFailureAction implements Action {
+  readonly type = ShoppingActionTypes.DELETE_ITEM_FAILURE;
+
+  constructor(public payload: string) {}
+}
+
+export type ShoppingAction =
+  | AddItemAction
+  | AddItemSuccessAction
+  | AddItemFailureAction
+  | DeleteItemAction
+  | DeleteItemSuccessAction
+  | DeleteItemFailureAction
+  | LoadShoppingAction
+  | LoadShoppingFailureAction
+  | LoadShoppingSuccessAction;

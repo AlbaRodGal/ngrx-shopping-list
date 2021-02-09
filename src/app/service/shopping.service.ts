@@ -1,24 +1,28 @@
-import { ShoppingItem } from './shopping-item.model';
+import { ShoppingItem } from '../models/shopping-item.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay } from 'rxjs/operators';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingService {
   private SHOPPING_URL = 'http://localhost:3000/shopping';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getShoppingItems(){
-    return this.http.get<Array<ShoppingItem>>(this.SHOPPING_URL).pipe(delay(500));
+  getShoppingItems() {
+    return this.http
+      .get<Array<ShoppingItem>>(this.SHOPPING_URL)
+      .pipe(delay(500));
   }
-  addShoppingItem(shoppingItem: ShoppingItem){
+
+  addShoppingItem(shoppingItem: ShoppingItem) {
     return this.http.post(this.SHOPPING_URL, shoppingItem).pipe(delay(500));
   }
-  deleteShoppingItem(id: string){
+
+  deleteShoppingItem(id: string) {
     return this.http.delete(`${this.SHOPPING_URL}/${id}`).pipe(delay(500));
   }
 }

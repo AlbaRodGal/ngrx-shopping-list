@@ -24,6 +24,7 @@ li {
   border-top: 1px solid lightcyan;
   border-bottom: 1px solid lightcyan;
   padding-top: 20px;
+  padding-bottom: 20px;
   width: 100%;
 }
 
@@ -55,4 +56,8 @@ form > button {
   &:hover {
     background: #006266;
   }
+}
+
+.loading {
+  box-shadow: 20px 20px 0px pink !important;
 }
